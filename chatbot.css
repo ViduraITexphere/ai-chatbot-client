@@ -123,7 +123,6 @@ body {
     bottom: 70px;
     right: 20px;
     width: 300px;
-    height: 550px;
     z-index: 999;
     background-color: #fff;
     border-radius: 10px;
@@ -134,6 +133,11 @@ body {
     display: none;
     /* Hidden by default */
 }
+
+#chatbot-container.hidden {
+    pointer-events: none;
+}
+
 
 h1 {
     margin-bottom: 20px;
