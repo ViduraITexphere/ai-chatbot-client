@@ -362,3 +362,17 @@ button {
     border-color: #800000;
     /* Darkest border when clicked */
 }
+
+#chatbot-iframe {
+    position: fixed;
+    bottom: 20px;
+    right: 0;
+    z-index: -1;
+    /* Set a low z-index initially */
+}
+
+/* When the chatbot is visible, increase the z-index */
+#chatbot-iframe.visible {
+    z-index: 999;
+    /* Higher value when visible */
+}

@@ -237,29 +237,48 @@
             document.getElementById("user-info-form").style.display = "block";
         }
 
+        // function toggleChatbot() {
+        //     if (
+        //         chatbotContainer.style.display === "none" ||
+        //         chatbotContainer.style.display === ""
+        //     ) {
+        //         chatbotContainer.style.display = "block";
+        //         // Reset welcome message display
+        //         // Comment out this line to avoid clearing the chat history
+        //         // const chatHistory = document.getElementById("chat-history");
+        //         // chatHistory.innerHTML = ""; // Clear chat history
+        //         // Display the welcome message again if needed
+        //         // displayWelcomeMessageOnce(); // Display the welcome message (optional)
+        //     } else {
+        //         chatbotContainer.style.display = "none";
+        //     }
+        //     conversationStarted = true;
+        //     const endConversationButton = document.querySelector(
+        //         ".end-conversation-button"
+        //     );
+        //     if (endConversationButton) {
+        //         endConversationButton.style.display = "none";
+        //     }
+        // }
+
+
         function toggleChatbot() {
-            if (
-                chatbotContainer.style.display === "none" ||
-                chatbotContainer.style.display === ""
-            ) {
+            const iframe = document.getElementById("chatbot-iframe");
+
+            if (chatbotContainer.style.display === "none" || chatbotContainer.style.display === "") {
                 chatbotContainer.style.display = "block";
-                // Reset welcome message display
-                // Comment out this line to avoid clearing the chat history
-                // const chatHistory = document.getElementById("chat-history");
-                // chatHistory.innerHTML = ""; // Clear chat history
-                // Display the welcome message again if needed
-                // displayWelcomeMessageOnce(); // Display the welcome message (optional)
+                iframe.classList.add("visible");  // Add visible class to increase z-index
             } else {
                 chatbotContainer.style.display = "none";
+                iframe.classList.remove("visible");  // Remove visible class to lower z-index
             }
             conversationStarted = true;
-            const endConversationButton = document.querySelector(
-                ".end-conversation-button"
-            );
+            const endConversationButton = document.querySelector(".end-conversation-button");
             if (endConversationButton) {
                 endConversationButton.style.display = "none";
             }
         }
+
 
         document
             .getElementById("toggle-chatbot")
