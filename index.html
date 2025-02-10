@@ -262,22 +262,20 @@
         // }
 
 
+        // Function to toggle chatbot visibility
         function toggleChatbot() {
             const iframe = document.getElementById("chatbot-iframe");
 
-            if (chatbotContainer.style.display === "none" || chatbotContainer.style.display === "") {
-                chatbotContainer.style.display = "block";
-                iframe.classList.add("visible");  // Add visible class to increase z-index
+            // Check the current visibility of the iframe
+            if (iframe.style.visibility === "hidden" || iframe.style.visibility === "") {
+                iframe.style.visibility = "visible";  // Make iframe visible
+                iframe.style.pointerEvents = "auto";  // Enable interaction
             } else {
-                chatbotContainer.style.display = "none";
-                iframe.classList.remove("visible");  // Remove visible class to lower z-index
-            }
-            conversationStarted = true;
-            const endConversationButton = document.querySelector(".end-conversation-button");
-            if (endConversationButton) {
-                endConversationButton.style.display = "none";
+                iframe.style.visibility = "hidden";  // Hide iframe
+                iframe.style.pointerEvents = "none";  // Disable interaction
             }
         }
+
 
 
         document
