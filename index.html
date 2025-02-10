@@ -237,46 +237,29 @@
             document.getElementById("user-info-form").style.display = "block";
         }
 
-        // function toggleChatbot() {
-        //     if (
-        //         chatbotContainer.style.display === "none" ||
-        //         chatbotContainer.style.display === ""
-        //     ) {
-        //         chatbotContainer.style.display = "block";
-        //         // Reset welcome message display
-        //         // Comment out this line to avoid clearing the chat history
-        //         // const chatHistory = document.getElementById("chat-history");
-        //         // chatHistory.innerHTML = ""; // Clear chat history
-        //         // Display the welcome message again if needed
-        //         // displayWelcomeMessageOnce(); // Display the welcome message (optional)
-        //     } else {
-        //         chatbotContainer.style.display = "none";
-        //     }
-        //     conversationStarted = true;
-        //     const endConversationButton = document.querySelector(
-        //         ".end-conversation-button"
-        //     );
-        //     if (endConversationButton) {
-        //         endConversationButton.style.display = "none";
-        //     }
-        // }
-
-
-        // Function to toggle chatbot visibility
         function toggleChatbot() {
-            const iframe = document.getElementById("chatbot-iframe");
-
-            // Check the current visibility of the iframe
-            if (iframe.style.visibility === "hidden" || iframe.style.visibility === "") {
-                iframe.style.visibility = "visible";  // Make iframe visible
-                iframe.style.pointerEvents = "auto";  // Enable interaction
+            if (
+                chatbotContainer.style.display === "none" ||
+                chatbotContainer.style.display === ""
+            ) {
+                chatbotContainer.style.display = "block";
+                // Reset welcome message display
+                // Comment out this line to avoid clearing the chat history
+                // const chatHistory = document.getElementById("chat-history");
+                // chatHistory.innerHTML = ""; // Clear chat history
+                // Display the welcome message again if needed
+                // displayWelcomeMessageOnce(); // Display the welcome message (optional)
             } else {
-                iframe.style.visibility = "hidden";  // Hide iframe
-                iframe.style.pointerEvents = "none";  // Disable interaction
+                chatbotContainer.style.display = "none";
+            }
+            conversationStarted = true;
+            const endConversationButton = document.querySelector(
+                ".end-conversation-button"
+            );
+            if (endConversationButton) {
+                endConversationButton.style.display = "none";
             }
         }
-
-
 
         document
             .getElementById("toggle-chatbot")
