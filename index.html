@@ -395,11 +395,11 @@
                 // Format the numbered points as list items
                 let formattedPoints = "";
                 if (points.length > 0) {
-                    formattedPoints = "<ul>"; // Start unordered list
+                    formattedPoints = "<ol>"; // Start ordered list
                     points.forEach(point => {
                         formattedPoints += `<li class="bot-message">${point}</li>`;
                     });
-                    formattedPoints += "</ul>"; // End unordered list
+                    formattedPoints += "</ol>"; // End ordered list
                 }
 
                 // Combine the introduction with the formatted points
