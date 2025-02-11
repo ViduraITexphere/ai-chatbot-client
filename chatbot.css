@@ -139,6 +139,20 @@ body {
 } */
 
 
+
+.bot-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.bot-list li {
+    background: #f1f1f1;
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+
 h1 {
     margin-bottom: 20px;
     font-size: 18px;
