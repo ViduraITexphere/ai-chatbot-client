@@ -195,15 +195,13 @@ h1 {
     font-family: "DM Sans", sans-serif;
 }
 
-.bot-message ul {
+/* .bot-message ul {
     padding-left: 20px;
-    /* Adds left indentation for the list */
 }
 
 .bot-message ul li {
     line-height: 0.7;
-    /* Adjusts the line height only for the list items */
-}
+} */
 
 
 
