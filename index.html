@@ -317,14 +317,31 @@
                 const data = await response.json();
                 let botMessage = data.response;
 
-                // Convert numbered list into an HTML list
-                botMessage = botMessage
-                    .replace(/\n\d+\./g, "</li><li>") // Replace `\n1.` format with list items
-                    .replace(/\n/g, "<br>"); // Replace other newlines with <br> for normal line breaks
+                // Filter out the introductory text and only focus on numbered points
+                const lines = botMessage.split("\n");
+                const points = [];
 
-                // Wrap the numbered list in <ol> if it exists
-                if (botMessage.includes("</li><li>")) {
-                    botMessage = `<ol><li>${botMessage}</li></ol>`;
+                lines.forEach(line => {
+                    // Look for lines starting with a number followed by a dot (e.g. "1.", "2.", etc.)
+                    if (/^\d+\./.test(line)) {
+                        points.push(line.trim());
+                    }
+                });
+
+                // Create an ordered list with n1, n2, n3...
+                if (points.length > 0) {
+                    botMessage = `<ol>`;
+                    points.forEach((point, index) => {
+                        botMessage += `<li>${index + 1}. ${point}</li>`;
+                    });
+                    botMessage += `</ol>`;
+                }
+
+                // If the message has non-list content, just append it without list formatting
+                if (lines.length > points.length) {
+                    botMessage = botMessage.replace("<ol>", "") // Clear the initial empty <ol> tag
+                        .replace("</ol>", ""); // Remove closing tag for non-list content
+                    botMessage = botMessage + `<div class="bot-message">${lines.filter(line => !/^\d+\./.test(line)).join("<br>")}</div>`;
                 }
 
                 chatHistory.innerHTML += `<div class="user-message">${userMessage}</div>`;
@@ -338,6 +355,7 @@
                 console.error("Error:", error);
             }
         }
+
 
 
         form.addEventListener("submit", (event) => {
