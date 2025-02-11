@@ -224,7 +224,7 @@
             if (userMessagesExist && !userInfoSubmitted) {
                 inactivityTimer = setTimeout(() => {
                     displayUserInfoForm();
-                }, 10000);
+                }, 20000);
             } else if (userInfoSubmitted) {
                 endConversationTimer = setTimeout(
                     displayEndConversationButton,
@@ -243,12 +243,7 @@
                 chatbotContainer.style.display === ""
             ) {
                 chatbotContainer.style.display = "block";
-                // Reset welcome message display
-                // Comment out this line to avoid clearing the chat history
-                // const chatHistory = document.getElementById("chat-history");
-                // chatHistory.innerHTML = ""; // Clear chat history
-                // Display the welcome message again if needed
-                // displayWelcomeMessageOnce(); // Display the welcome message (optional)
+
             } else {
                 chatbotContainer.style.display = "none";
             }

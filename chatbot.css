@@ -134,9 +134,9 @@ body {
     /* Hidden by default */
 }
 
-#chatbot-container.hidden {
+/* #chatbot-container.hidden {
     pointer-events: none;
-}
+} */
 
 
 h1 {
