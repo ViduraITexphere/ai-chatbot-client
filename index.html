@@ -317,33 +317,33 @@
                 const data = await response.json();
                 let botMessage = data.response;
 
-                // Filter out the introductory text and only focus on numbered points
+                // Split the message by lines
                 const lines = botMessage.split("\n");
                 const points = [];
+                let introText = "";
 
+                // Loop through each line and separate points from introductory text
                 lines.forEach(line => {
-                    // Look for lines starting with a number followed by a dot (e.g. "1.", "2.", etc.)
+                    // Check for numbered points (1., 2., 3., etc.)
                     if (/^\d+\./.test(line)) {
                         points.push(line.trim());
+                    } else {
+                        introText += line + "\n"; // Collect non-numbered lines as introductory text
                     }
                 });
 
-                // Create an ordered list with n1, n2, n3...
+                // Format the numbered points as a list
+                let formattedPoints = "";
                 if (points.length > 0) {
-                    botMessage = `<ol>`;
-                    points.forEach((point, index) => {
-                        botMessage += `<li>${index + 1}. ${point}</li>`;
+                    points.forEach(point => {
+                        formattedPoints += `<div class="bot-message">${point}</div>`;
                     });
-                    botMessage += `</ol>`;
                 }
 
-                // If the message has non-list content, just append it without list formatting
-                if (lines.length > points.length) {
-                    botMessage = botMessage.replace("<ol>", "") // Clear the initial empty <ol> tag
-                        .replace("</ol>", ""); // Remove closing tag for non-list content
-                    botMessage = botMessage + `<div class="bot-message">${lines.filter(line => !/^\d+\./.test(line)).join("<br>")}</div>`;
-                }
+                // Combine the introduction with the numbered list and other details
+                botMessage = introText + formattedPoints;
 
+                // Append both user and bot messages to the chat history
                 chatHistory.innerHTML += `<div class="user-message">${userMessage}</div>`;
                 chatHistory.innerHTML += `<div class="bot-message">${botMessage}</div>`;
 
@@ -355,6 +355,7 @@
                 console.error("Error:", error);
             }
         }
+
 
 
 
