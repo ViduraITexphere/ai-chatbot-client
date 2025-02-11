@@ -263,15 +263,48 @@
         const userInput = document.getElementById("user-input");
         const form = document.getElementById("chat-form");
 
+        // async function sendMessage(message) {
+        //     const userMessage = userInput.value || message
+        //     userInput.value = "";
+        //     console.log(userMessage);
+        //     try {
+        //         const response = await fetch(
+        //             // `https://chatbot-backend-2.onrender.com/chat-history/${objectId}`,
+        //             `https://ai-chatbot-production-9a8d.up.railway.app/chat-history/${objectId}`,
+        //             // `http://localhost:5000/chat-history/${objectId}`,
+        //             {
+        //                 method: "POST",
+        //                 headers: {
+        //                     "Content-Type": "application/json",
+        //                 },
+        //                 body: JSON.stringify({ userInput: userMessage }),
+        //             }
+        //         );
+
+        //         const data = await response.json();
+        //         const botMessage = data.response;
+
+        //         chatHistory.innerHTML += `<div class="user-message">${userMessage}</div>`;
+        //         chatHistory.innerHTML += `<div class="bot-message">${botMessage}</div>`;
+
+        //         addToTranscript("User", userMessage);
+        //         addToTranscript("Bot", botMessage);
+
+        //         chatHistory.scrollTop = chatHistory.scrollHeight;
+        //     } catch (error) {
+        //         console.error("Error:", error);
+        //     }
+        // }
+
+
         async function sendMessage(message) {
-            const userMessage = userInput.value || message
+            const userMessage = userInput.value || message;
             userInput.value = "";
             console.log(userMessage);
+
             try {
                 const response = await fetch(
-                    // `https://chatbot-backend-2.onrender.com/chat-history/${objectId}`,
                     `https://ai-chatbot-production-9a8d.up.railway.app/chat-history/${objectId}`,
-                    // `http://localhost:5000/chat-history/${objectId}`,
                     {
                         method: "POST",
                         headers: {
@@ -282,7 +315,17 @@
                 );
 
                 const data = await response.json();
-                const botMessage = data.response;
+                let botMessage = data.response;
+
+                // Convert numbered list into an HTML list
+                botMessage = botMessage
+                    .replace(/\n\d+\./g, "</li><li>") // Replace `\n1.` format with list items
+                    .replace(/\n/g, "<br>"); // Replace other newlines with <br> for normal line breaks
+
+                // Wrap the numbered list in <ol> if it exists
+                if (botMessage.includes("</li><li>")) {
+                    botMessage = `<ol><li>${botMessage}</li></ol>`;
+                }
 
                 chatHistory.innerHTML += `<div class="user-message">${userMessage}</div>`;
                 chatHistory.innerHTML += `<div class="bot-message">${botMessage}</div>`;
@@ -295,6 +338,7 @@
                 console.error("Error:", error);
             }
         }
+
 
         form.addEventListener("submit", (event) => {
             event.preventDefault();
