@@ -201,7 +201,7 @@ h1 {
 }
 
 .bot-message ul li {
-    line-height: 1.2;
+    line-height: 0.7;
     /* Adjusts the line height only for the list items */
 }
 
