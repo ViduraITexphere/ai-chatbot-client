@@ -386,7 +386,8 @@
                 lines.forEach(line => {
                     // Check for numbered points (1., 2., 3., etc.)
                     if (/^\d+\./.test(line)) {
-                        points.push(line.trim());
+                        // Remove the number and the dot (e.g., "1." becomes "")
+                        points.push(line.replace(/^\d+\.\s*/, "").trim());
                     } else {
                         introText += line + "\n"; // Collect non-numbered lines as introductory text
                     }
