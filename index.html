@@ -224,11 +224,11 @@
             if (userMessagesExist && !userInfoSubmitted) {
                 inactivityTimer = setTimeout(() => {
                     displayUserInfoForm();
-                }, 20000);
+                }, 30000);
             } else if (userInfoSubmitted) {
                 endConversationTimer = setTimeout(
                     displayEndConversationButton,
-                    15000
+                    45000
                 );
             }
         }
